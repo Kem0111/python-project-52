@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load i18n widget_tweaks %}
+{% block content %}
+<main>
+    <div class="container wrapper flex-grow-1">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+                <h2>{% trans "Authorization"%}</h2>
+                <h1 class="my-4"></h1>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                        <p>{{ error }}</p>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        {% trans field.label %}
+                        {{ field }}
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">{% trans "Login" %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load i18n %}
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Менеджер задач</title>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" rel="stylesheet">
-    <script crossorigin="anonymous" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script crossorigin="anonymous" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>{% trans "Task Manager" %}</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
-            <a class="navbar-brand" href="{% url 'index' %}">Менеджер задач</a>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarToggleExternalContent">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                <a class="nav-link" href="/users/">Пользователи</a>
-                </li>
+<body class="d-flex flex-column min-vh-100">
+    <div class="b-example-divider bg-light"></div>
+    <header class="p-3 bg-dark">
+        <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+            <ul class="nav me-lg-auto mb-3 justify-content-left mb-md-0">
+                <li><a href="{% url 'index'%}" class="nav-link px-2 text-light">{% trans "Task Manager" %}</a></li>
+                <li><a href="{% url 'users' %}" class="nav-link px-2 text-light">{% trans "Users" %}</a></li>
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/login/">Вход</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/create/">Регистрация</a>
-                </li>
-            </ul>
+            {% if user.is_authenticated %}
+            <div class="text-end">
+                <a href="{% url 'logout' %}" class="btn btn-secondary me-2">{% trans "Logout" %}</a>
             </div>
-        </nav>
+            {% else %}
+            <div class="text-end">
+                <a href="{% url 'login' %}" class="btn btn-secondary me-2">{% trans "Login" %}</a>
+                <a href="{% url 'register' %}" class="btn btn-warning">{% trans "Registration" %}</a>
+            </div>
+            {% endif %}
+        </div>
     </header>
+    <div class="b-example-divider"></div>
+<div class="b-example-divider"></div>
     {% if messages %}
-   {% for category, message in messages %}
-      <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
-  {% endfor %}
-{% endif %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% block content %}{% endblock %}
   </body>
 </html>

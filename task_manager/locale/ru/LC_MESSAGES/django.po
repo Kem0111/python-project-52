@@ -1,0 +1,107 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-20 12:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: settings.py:81
+msgid "Russian"
+msgstr ""
+
+#: settings.py:82
+msgid "English"
+msgstr ""
+
+msgid "Task Manager"
+msgstr "Менеджер задач"
+
+msgid "Users"
+msgstr "Пользователи"
+
+msgid "Login"
+msgstr "Вход"
+
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "Your path to organized productivity"
+msgstr "Ваш путь к организованной продуктивности"
+
+msgid "Learn more"
+msgstr "Узнать больше"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Full name"
+msgstr "Полное имя"
+
+msgid "Created at"
+msgstr "Дата создания"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Update"
+msgstr "Изменить"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Authorization"
+msgstr "Авторизация"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "You are successfully logged in"
+msgstr "Вы успешно залогинены"
+
+msgid "You have successfully logged out"
+msgstr "Вы успешно вышли из системы"
+
+msgid "User successfully registered"
+msgstr "Пользователь успешно зарегистрирован"
+
+
+msgid "You are not authorized! Please login"
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход"
+
+msgid "Changing the user"
+msgstr "Изменение пользователя"
+
+msgid "You do not have permission to change another user"
+msgstr "У вас нет прав для изменения другого пользователя"
+
+msgid "Update password"
+msgstr "Сменить пароль"
+
+msgid "Password successfully updated"
+msgstr "Пароль успешно изменен"
+
+msgid "User information updated successfully"
+msgstr "Информация о пользователе успешно обновлена"
+
+msgid "Logout"
+msgstr "Выход"

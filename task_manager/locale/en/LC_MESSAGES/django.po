@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-20 12:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: settings.py:81
+msgid "Russian"
+msgstr ""
+
+#: settings.py:82
+msgid "English"
+msgstr ""
+
+msgid "Task Manager"
+msgstr "Task Manager"
+
+msgid "Users"
+msgstr "Users"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Registration"
+msgstr "Registration"
+
+msgid "Your path to organized productivity"
+msgstr "Your path to organized productivity"
+
+msgid "Learn more"
+msgstr "Learn more"
+
+msgid "Full name"
+msgstr "Full name"
+
+msgid "Created at"
+msgstr "Created at"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Authorization"
+msgstr "Authorization"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "You are successfully logged in"
+msgstr "You are successfully logged in"
+
+msgid "You have successfully logged out"
+msgstr "You have successfully logged out"
+
+msgid "User successfully registered"
+msgstr "User successfully registered"
+
+msgid "You are not authorized! Please login"
+msgstr "You are not authorized! Please login"
+
+msgid "Changing the user"
+msgstr "Changing the user"
+
+msgid "You do not have permission to change another user"
+msgstr "You do not have permission to change another user"
+
+msgid "Update password"
+msgstr "Update password"
+
+msgid "Password successfully updated"
+msgstr "Password successfully updated"
+
+msgid "User information updated successfully"
+msgstr "User information updated successfully"
+
+msgid "Logout"
+msgstr "Logout"

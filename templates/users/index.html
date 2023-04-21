@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<main>
+    <div class="container">
+        <h2 class="text-center mt-3"  style="min-height: 10vh;">{% trans "Users" %}</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>{% trans "ID" %}</td>
+                    <td>{% trans "Username" %}</td>
+                    <td>{% trans "Full name" %}</td>
+                    <td>{% trans "Created at" %}</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in object_list %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.firs_name }} {{ user.last_name }}</td>
+                    <td>{{ user.date_joined }}</td></td>
+                    <td><a href="{% url 'update_user' user.id %}">{% trans "Update" %}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}
