@@ -96,3 +96,18 @@ msgstr "User information updated successfully"
 
 msgid "Logout"
 msgstr "Logout"
+
+msgid "Delete user"
+msgstr "Delete user"
+
+msgid "Are you sure you want to delete"
+msgstr "Are you sure you want to delete"
+
+msgid "Yes, delete"
+msgstr "Yes, delete"
+
+msgid "No, go back"
+msgstr "No, go back"
+
+msgid "User has been deleted successfully"
+msgstr "User has been deleted successfully"

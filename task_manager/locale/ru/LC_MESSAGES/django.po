@@ -105,3 +105,18 @@ msgstr "Информация о пользователе успешно обно
 
 msgid "Logout"
 msgstr "Выход"
+
+msgid "Delete user"
+msgstr "Удаление пользователя"
+
+msgid "Are you sure you want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+msgid "No, go back"
+msgstr "Нет, вернуться назад"
+
+msgid "User has been deleted successfully"
+msgstr "Пользователь успешно удален"

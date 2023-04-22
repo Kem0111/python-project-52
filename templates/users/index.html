@@ -18,9 +18,12 @@
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>{{ user.username }}</td>
-                    <td>{{ user.firs_name }} {{ user.last_name }}</td>
+                    <td><span>{{ user.first_name }}</span> <span>{{ user.last_name }}</span></td>
                     <td>{{ user.date_joined }}</td></td>
-                    <td><a href="{% url 'update_user' user.id %}">{% trans "Update" %}</a></td>
+                    <td>
+                        <p><a href="{% url 'update_user' user.id %}">{% trans "Update" %}</a></p>
+                        <p><a href="{% url 'delete_user' user.id%}">{% trans "Delete"%}</a></p>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
