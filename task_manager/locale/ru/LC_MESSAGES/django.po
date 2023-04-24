@@ -120,3 +120,42 @@ msgstr "Нет, вернуться назад"
 
 msgid "User has been deleted successfully"
 msgstr "Пользователь успешно удален"
+
+msgid "Status changed successfully"
+msgstr "Статус успешно изменён"
+
+msgid "Can't delete status because it's in use"
+msgstr "Невозможно удалить статус, потому что он используется"
+
+msgid "Status created successfully"
+msgstr "Статус успешно создан"
+
+msgid "Status deleted successfully"
+msgstr "Статус успешно удалён"
+
+msgid "Statuses"
+msgstr "Статусы"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
+
+msgid "Create status"
+msgstr "Создать статус"
+
+msgid "Status has been deleted successfully"
+msgstr "Статус успешно удален"
+
+msgid "Delete status"
+msgstr "Удаление статуса"
+
+msgid "Update status"
+msgstr "Обновление статуса"
+
+msgid "Status has been updated successfully"
+msgstr "Статус успешно изменён"

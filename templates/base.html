@@ -15,12 +15,14 @@
             <ul class="nav me-lg-auto mb-3 justify-content-left mb-md-0">
                 <li><a href="{% url 'index'%}" class="nav-link px-2 text-light">{% trans "Task Manager" %}</a></li>
                 <li><a href="{% url 'users' %}" class="nav-link px-2 text-light">{% trans "Users" %}</a></li>
-            </ul>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'statuses' %}" class="nav-link px-2 text-light">{% trans "Statuses" %}</a></li>
+            </ul>
             <div class="text-end">
                 <a href="{% url 'logout' %}" class="btn btn-secondary me-2">{% trans "Logout" %}</a>
             </div>
             {% else %}
+            </ul>
             <div class="text-end">
                 <a href="{% url 'login' %}" class="btn btn-secondary me-2">{% trans "Login" %}</a>
                 <a href="{% url 'register' %}" class="btn btn-warning">{% trans "Registration" %}</a>

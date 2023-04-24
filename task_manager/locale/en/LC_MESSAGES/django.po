@@ -111,3 +111,30 @@ msgstr "No, go back"
 
 msgid "User has been deleted successfully"
 msgstr "User has been deleted successfully"
+
+msgid "Statuses"
+msgstr "Statuses"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Create"
+msgstr "Create"
+
+msgid "Status successfully created"
+msgstr "Status successfully created"
+
+msgid "Create status"
+msgstr "Create status"
+
+msgid "Status has been deleted successfully"
+msgstr "Status has been deleted successfully"
+
+msgid "Delete status"
+msgstr "Delete status"
+
+msgid "Update status"
+msgstr "Update status"
+
+msgid "Status has been updated successfully"
+msgstr "Status has been updated successfully"

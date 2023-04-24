@@ -1,6 +1,6 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
 from task_manager.forms import LoginUserForm
+from common.test_utils import UserTestCase
 
 
 class HomePageViewTest(TestCase):
@@ -10,12 +10,7 @@ class HomePageViewTest(TestCase):
         self.assertTemplateUsed(response, "index.html")
 
 
-class LoginUserViewTest(TestCase):
-
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username="testuser", password="testpassword"
-        )
+class LoginUserViewTest(UserTestCase):
 
     def test_login_user_view_renders_correct_template(self):
         response = self.client.get("/login/")
@@ -35,12 +30,7 @@ class LogoutUserViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
 
 
-class LoginUserFormTest(TestCase):
-
-    def setUp(self):
-        self.user = User.objects.create_user(
-            username="testuser", password="testpassword"
-        )
+class LoginUserFormTest(UserTestCase):
 
     def test_login_user_form_valid_data(self):
         form = LoginUserForm(

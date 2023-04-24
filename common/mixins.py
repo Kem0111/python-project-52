@@ -3,15 +3,38 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 from typing import Any
 from django.http import HttpRequest
+from common.decorators import login_required_message
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class UserPermissionMixin:
+class BaseLoginRequiredMixin(LoginRequiredMixin):
+    """
+    Class BaseLoginRequiredMixin inherits from LoginRequiredMixin and adds
+    a custom method decorator to the dispatch method. This decorator shows
+    a message to the user when they are required to log in.
+
+    Attributes:
+    LoginRequiredMixin: A mixin that requires a user to be authenticated
+    to access a view. If not authenticated, they will
+    be redirected to the login page.
+    Methods:
+    dispatch: Takes a request and any arguments for the view, and
+    applies the login_required_message decorator before
+    calling the parent dispatch method.
+    """
+    @method_decorator(login_required_message)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserPermissionMixin(LoginRequiredMixin):
     """
     Mixin checks if the user has permission to modify another user.
     If the user does not have permission, they will be redirected
     to the 'users' page with an error message.
     """
-
+    @method_decorator(login_required_message)
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> Any:
         if request.user.id != int(self.kwargs['pk']):
             messages.error(request, _(

@@ -4,9 +4,9 @@
 <main>
     <div class="container">
         <h2 class="text-center mt-3"  style="min-height: 10vh;">{% trans "Users" %}</h2>
-        <table class="table table-striped">
+        <table class="table table-dark table-striped-columns">
             <thead>
-                <tr>
+                <tr class="font-weight-bold">
                     <td>{% trans "ID" %}</td>
                     <td>{% trans "Username" %}</td>
                     <td>{% trans "Full name" %}</td>
@@ -16,13 +16,13 @@
             <tbody>
                 {% for user in object_list %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.username }}</td>
-                    <td><span>{{ user.first_name }}</span> <span>{{ user.last_name }}</span></td>
-                    <td>{{ user.date_joined }}</td></td>
-                    <td>
-                        <p><a href="{% url 'update_user' user.id %}">{% trans "Update" %}</a></p>
-                        <p><a href="{% url 'delete_user' user.id%}">{% trans "Delete"%}</a></p>
+                    <td class="align-middle py-3">{{ user.id }}</td>
+                    <td class="align-middle py-3">{{ user.username }}</td>
+                    <td class="align-middle py-3"><span>{{ user.first_name }}</span> <span>{{ user.last_name }}</span></td>
+                    <td class="align-middle py-3">{{ user.date_joined }}</td></td>
+                    <td class="align-middle py-3">
+                        <p><a href="{% url 'update_user' user.id %}" class="btn btn-success btn-sm">{% trans "Update" %}</a></p>
+                        <p><a href="{% url 'delete_user' user.id %}" class="btn btn-danger btn-sm">{% trans "Delete"%}</a></p>
                     </td>
                 </tr>
                 {% endfor %}

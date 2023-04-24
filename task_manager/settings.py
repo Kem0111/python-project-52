@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'task_manager',
     'bootstrap4',
     'users',
+    'statuses',
     'widget_tweaks'
 ]
 
