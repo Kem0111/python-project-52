@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n widget_tweaks %}
+{% block content %}
+<div class="container wrapper flex-grow-1">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+            <h2>{% trans "Create task" %}</h2>
+            <h1 class="my-4"></h1>
+            <form method="post">
+                {% csrf_token %}
+                {% for f in form %}
+                    <div class="form-group">
+                        <label for="{{ f.id_for_label }}">{{ f.label }}:</label>
+                        {{ f|add_class:'w-100'}}
+                        <div>{{ f.errors }}</div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">{% trans "Create" %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,23 +1,29 @@
 from django.urls import reverse
 from .models import Statuses
-from common.test_utils import UserTestCase
+from common.test_utils import BaseViewTest
 # Create your tests here.
 
 
-class StatusesViewTest(UserTestCase):
+class StatusesViewTest(BaseViewTest):
 
-    def test_users_view_renders_correct_template(self):
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.get(reverse("statuses"))
-        self.assertTemplateUsed(response, "statuses/index.html")
+    def test_statuses_view_renders_correct_template(self):
+        self.assertRendersCorrectTemplate("statuses",
+                                          "statuses/index.html")
+
+    def test_statuses_view_renders_correct_template_by_unlogin_user(self):
+        self.assertRendersCorrectTemplate("statuses",
+                                          "statuses/index.html")
 
 
-class CreateStatusViewTest(UserTestCase):
+class CreateStatusViewTest(BaseViewTest):
 
     def test_create_status_view_renders_correct_template(self):
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.get(reverse("create_status"))
-        self.assertTemplateUsed(response, 'statuses/create_status.html')
+        self.assertRendersCorrectTemplate("create_status",
+                                          "statuses/create_status.html")
+
+    def test_create_status_renders_correct_template_by_unlogin_user(self):
+        self.assertRendersCorrectTemplate("create_status",
+                                          "statuses/create_status.html")
 
     def test_creation_status_view_form_valid(self):
         self.client.login(username='testuser', password='testpassword')
@@ -38,7 +44,19 @@ class CreateStatusViewTest(UserTestCase):
         self.assertTemplateUsed(response, 'statuses/create_status.html')
 
 
-class DeleteStatusViewTest(UserTestCase):
+class DeleteStatusViewTest(BaseViewTest):
+
+    def test_delete_status_view_renders_correct_template(self):
+        test_status = Statuses.objects.create(name="teststatus")
+        self.assertRendersCorrectTemplate("delete_status",
+                                          "statuses/delete_status.html",
+                                          url_args={"pk": test_status.pk})
+
+    def test_delete_status_renders_correct_template_by_unlogin_user(self):
+        test_status = Statuses.objects.create(name="teststatus")
+        self.assertRendersCorrectTemplate("delete_status",
+                                          "statuses/delete_status.html",
+                                          url_args={"pk": test_status.pk})
 
     def test_deleted_status_view(self):
         self.client.login(username='testuser', password='testpassword')
@@ -52,7 +70,19 @@ class DeleteStatusViewTest(UserTestCase):
         self.assertNotEqual(self.status.pk, 'pk')
 
 
-class UpdateStatusViewTest(UserTestCase):
+class UpdateStatusViewTest(BaseViewTest):
+
+    def test_update_status_view_renders_correct_template(self):
+        test_status = Statuses.objects.create(name="teststatus")
+        self.assertRendersCorrectTemplate("update_status",
+                                          "statuses/update_status.html",
+                                          url_args={"pk": test_status.pk})
+
+    def test_update_status_renders_correct_template_by_unlogin_user(self):
+        test_status = Statuses.objects.create(name="teststatus")
+        self.assertRendersCorrectTemplate("update_status",
+                                          "statuses/update_status.html",
+                                          url_args={"pk": test_status.pk})
 
     def test_updated_status_view_form_valid(self):
         self.client.login(username='testuser', password='testpassword')

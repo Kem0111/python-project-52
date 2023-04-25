@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% block content %}
+<main>
+    <div class="container">
+        <div class="justify-content-center align-items-center">
+            <h2 class="mt-3">{% trans "Task view" %}</h2>
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h2>{{ object.name }}</h2>
+                </div>
+                <div class="card-body bg-light">
+                    {% if object.description %}
+                        <p>{{ object.description }}</p>
+                    {% else %}
+                    {% endif %}
+                    <hr>
+                    <div class="container">
+                        <div class="row p-1">
+                        <div class="col">{% trans "author" %}</div>
+                        <div class="col">{{ object.author }}</div>
+                        </div>
+                        <div class="row p-1">
+                        <div class="col">{% trans "executor" %}</div>
+                        <div class="col">{{ object.executor }}</div>
+                        </div>
+                        <div class="row p-1">
+                        <div class="col">{% trans "status" %}</div>
+                        <div class="col">{{ object.status }}</div>
+                        </div>
+                        <div class="row p-1">
+                        <div class="col">{% trans "Created at" %}</div>
+                        <div class="col">{{ object.created_at }}</div>
+                     </div>
+                        <div class="row p-1">
+                            <div class="col">
+                                <a href="{% url 'update_task' object.pk %}" class="btn btn-success btn-sm">{% trans "Update" %}</a>
+                                <h1 class="my-2"></h1>
+                                <a href="{% url 'delete_task' object.pk %}" class="btn btn-danger btn-sm">{% trans "Delete" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</main>
+{% endblock %}

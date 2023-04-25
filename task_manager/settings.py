@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'users',
     'statuses',
+    'tasks',
     'widget_tweaks'
 ]
 

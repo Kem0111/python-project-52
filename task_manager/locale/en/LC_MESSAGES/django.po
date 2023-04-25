@@ -138,3 +138,42 @@ msgstr "Update status"
 
 msgid "Status has been updated successfully"
 msgstr "Status has been updated successfully"
+
+msgid "status"
+msgstr "Status"
+
+msgid "author"
+msgstr "Author"
+
+msgid "executor"
+msgstr "Executor"
+
+msgid "Tasks"
+msgstr "Tasks"
+
+msgid "description"
+msgstr "Description"
+
+msgid "Task successfully created"
+msgstr "Task successfully created"
+
+msgid "Create task"
+msgstr "Create task" 
+
+msgid "Task has been updated successfully"
+msgstr "Task has been updated successfully"
+
+msgid "Update task"
+msgstr "Update task"
+
+msgid "A task can only be deleted by its author"
+msgstr "A task can only be deleted by its author"
+
+msgid "Task has been deleted successfully"
+msgstr "Task has been deleted successfully"
+
+msgid "Delete task"
+msgstr "Delete task"
+
+msgid "Task view"
+msgstr "Task view"

@@ -159,3 +159,42 @@ msgstr "Обновление статуса"
 
 msgid "Status has been updated successfully"
 msgstr "Статус успешно изменён"
+
+msgid "status"
+msgstr "Статус"
+
+msgid "author"
+msgstr "Автор"
+
+msgid "executor"
+msgstr "Исполнитель"
+
+msgid "Tasks"
+msgstr "Задачи"
+
+msgid "description"
+msgstr "Описание"
+
+msgid "Task successfully created"
+msgstr "Задача успешно создана"
+
+msgid "Create task" 
+msgstr "Создать задачу"
+
+msgid "Task has been updated successfully"
+msgstr "Задача успешно изменена"
+
+msgid "Update task"
+msgstr "Изменение задачи"
+
+msgid "A task can only be deleted by its author"
+msgstr "Задачу может удалить только её автор"
+
+msgid "Task has been deleted successfully"
+msgstr "Задача успешно удалена"
+
+msgid "Delete task"
+msgstr "Удаление задачи"
+
+msgid "Task view"
+msgstr "Просмотр задачи"
