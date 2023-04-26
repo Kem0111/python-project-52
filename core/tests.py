@@ -1,5 +1,5 @@
 from django.test import TestCase
-from task_manager.forms import LoginUserForm
+from core.forms import LoginUserForm
 from common.test_utils import UserTestCase
 
 
