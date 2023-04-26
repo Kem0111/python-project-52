@@ -28,22 +28,15 @@ class CreateLabelViewTest(BaseViewTest):
         )
 
     def test_creation_label_view_form_valid(self):
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse("create_label"), {
-            'name': 'Created'
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse('labels'))
-        created_label = Labels.objects.get(name='Created')
-        self.assertEqual(created_label.name, 'Created')
+        data = {'name': 'Created_label'}
+        self.assertCreationViewFormValid("create_label", Labels, data, 'labels')
 
     def test_creation_label_view_form_invalid(self):
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse('create_label'), {
-            'name': ''
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'labels/create_label.html')
+        data = {'name': ''}
+        self.assertCreationViewFormInValid(
+            'create_label', data,
+            'labels/create_label.html'
+        )
 
 
 class DeleteLabelViewTest(BaseViewTest):
@@ -77,36 +70,32 @@ class DeleteLabelViewTest(BaseViewTest):
 class UpdatelabelViewTest(BaseViewTest):
 
     def test_update_label_view_renders_correct_template(self):
-        test_label = Labels.objects.create(name="testlabel")
+        test_label = self._create_test_label()
         self.assertRendersCorrectTemplate("update_label",
                                           "labels/update_label.html",
                                           url_args={"pk": test_label.pk})
 
     def test_update_label_renders_correct_template_by_unlogin_user(self):
-        test_label = Labels.objects.create(name="testlabel")
-        self.assertRendersCorrectTemplate("update_label",
-                                          "labels/update_label.html",
-                                          url_args={"pk": test_label.pk})
+        test_label = self._create_test_label()
+        self.assertRenderscorrectTemplateUnauthorized(
+            "update_label",
+            "labels/update_label.html",
+            url_args={"pk": test_label.pk}
+        )
 
     def test_updated_label_view_form_valid(self):
-        self.client.login(username='testuser', password='testpassword')
-        self.label = Labels.objects.create(name="Created")
-        response = self.client.post(reverse('update_label',
-                                            args=[self.label.pk]), {
-            'name': 'Updated'
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse("labels"))
-        updated_label = Labels.objects.get(name='Updated')
-        assert updated_label.pk == self.label.pk
-        self.assertEqual(updated_label.name, 'Updated')
+        test_label = self._create_test_label()
+        data = {'name': 'Updated_label'}
+        self.assertUpdatedViewFormValid('update_label', [test_label.pk],
+                                        data, "labels")
+        updated_label = Labels.objects.get(name='Updated_label')
+        self.assertEqual(updated_label.name, 'Updated_label')
+        assert updated_label.pk == test_label.pk
 
     def test_updated_label_view_form_invalid(self):
-        self.client.login(username='testuser', password='testpassword')
-        self.label = Labels.objects.create(name="Created")
-        response = self.client.post(reverse('update_label',
-                                            args=[self.label.pk]), {
+        test_label = self._create_test_label()
+        data = {
             'name': ''
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'labels/update_label.html')
+        }
+        self.assertUpdatedViewFormInValid('update_label', [test_label.pk],
+                                          data, 'labels/update_label.html')

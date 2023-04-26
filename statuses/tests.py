@@ -30,22 +30,14 @@ class CreateStatusViewTest(BaseViewTest):
         )
 
     def test_creation_status_view_form_valid(self):
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse("create_status"), {
-            'name': 'Created'
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse('statuses'))
-        created_status = Statuses.objects.get(name='Created')
-        self.assertEqual(created_status.name, 'Created')
+        data = {'name': 'Created_status'}
+        self.assertCreationViewFormValid("create_status", Statuses,
+                                         data, 'statuses')
 
     def test_creation_status_view_form_invalid(self):
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse('create_status'), {
-            'name': ''
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'statuses/create_status.html')
+        data = {'name': ''}
+        self.assertCreationViewFormInValid('create_status', data,
+                                           'statuses/create_status.html')
 
 
 class DeleteStatusViewTest(BaseViewTest):
@@ -93,24 +85,18 @@ class UpdateStatusViewTest(BaseViewTest):
         )
 
     def test_updated_status_view_form_valid(self):
-        self.client.login(username='testuser', password='testpassword')
-        self.status = Statuses.objects.create(name="Created")
-        response = self.client.post(reverse('update_status',
-                                            args=[self.status.pk]), {
-            'name': 'Updated'
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse("statuses"))
-        updated_status = Statuses.objects.get(name='Updated')
-        assert updated_status.pk == self.status.pk
-        self.assertEqual(updated_status.name, 'Updated')
+        test_status = Statuses.objects.create(name="Created")
+        data = {'name': 'Updated_status'}
+        self.assertUpdatedViewFormValid('update_status', [test_status.pk],
+                                        data, "statuses")
+        updated_status = Statuses.objects.get(name='Updated_status')
+        self.assertEqual(updated_status.name, 'Updated_status')
+        assert updated_status.pk == test_status.pk
 
     def test_updated_status_view_form_invalid(self):
-        self.client.login(username='testuser', password='testpassword')
-        self.status = Statuses.objects.create(name="Created")
-        response = self.client.post(reverse('update_status',
-                                            args=[self.status.pk]), {
+        test_status = Statuses.objects.create(name="Created")
+        data = {
             'name': ''
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'statuses/update_status.html')
+        }
+        self.assertUpdatedViewFormInValid('update_status', [test_status.pk],
+                                          data, 'statuses/update_status.html')

@@ -19,16 +19,6 @@ class TaskFilterFormTest(TestCase):
         self.assertIn('my_tasks_only', form.fields)
 
 
-class CreateTestTask(TestCase):
-
-    def _create_task(self):
-        user = User.objects.get(username="testuser")
-        test_status = Statuses.objects.create(name="teststatus")
-        test_task = Tasks.objects.create(name='testtask', status=test_status,
-                                         author=user)
-        return test_task
-
-
 class TasksViewTest(BaseViewTest):
 
     def test_tasks_view_render_template_test(self):
@@ -51,31 +41,27 @@ class CreateTaskView(BaseViewTest):
         )
 
     def test_creat_task_view_valid_form(self):
-        self.client.login(username="testuser", password="testpassword")
         test_status = Statuses.objects.create(name=_("teststatus"))
-        response = self.client.post(reverse("create_task"), {
+        data = {
             "name": "testtask",
             "description": "testdescription",
             "status": test_status.pk
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse("tasks"))
-        created_task = Tasks.objects.get(name="testtask")
-        self.assertEqual(created_task.name, "testtask")
+        }
+        self.assertCreationViewFormValid("create_task", Tasks, data, "tasks")
+        created_task = Tasks.objects.get(name=data['name'])
         self.assertEqual(created_task.status, test_status)
         self.assertEqual(created_task.description, "testdescription")
 
     def test_creat_task_view_invalid_form(self):
-        self.client.login(username="testuser", password="testpassword")
-        response = self.client.post(reverse("create_task"), {
+        data = {
             "name": "testtask",
-            "description": "testdescription",
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "tasks/create_task.html")
+            "description": "testdescription"
+        }
+        self.assertCreationViewFormInValid("create_task", data,
+                                           "tasks/create_task.html")
 
 
-class UpdateTaskView(BaseViewTest, CreateTestTask):
+class UpdateTaskView(BaseViewTest):
 
     def test_tasks_view_render_template_test(self):
         test_task = self._create_task()
@@ -84,7 +70,7 @@ class UpdateTaskView(BaseViewTest, CreateTestTask):
                                           url_args={"pk": test_task.pk})
 
     def test_tasks_view_render_template_by_unlogin_user_test(self):
-        test_task = self._create_task()
+        test_task = self._create_test_task()
         self.assertRenderscorrectTemplateUnauthorized(
             "update_task",
             'tasks/update_task.html',
@@ -93,44 +79,41 @@ class UpdateTaskView(BaseViewTest, CreateTestTask):
 
     def test_update_task_view_valid_form(self):
 
-        test_task = self._create_task()
-        self.client.login(username="testuser", password="testpassword")
+        test_task = self._create_test_task()
         test_status = Statuses.objects.create(name="teststatus2")
-        response = self.client.post(reverse("update_task",
-                                            args=[test_task.pk]), {
+        data = {
             "name": "testtask2",
             "description": "testdescription2",
             "status": test_status.pk
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse("tasks"))
+        }
+        self.assertUpdatedViewFormValid("update_task", [test_task.pk],
+                                        data, "tasks")
         updated_task = Tasks.objects.get(name="testtask2")
         self.assertEqual(updated_task.name, "testtask2")
+        assert test_task.pk == updated_task.pk
         self.assertEqual(updated_task.status, test_status)
         self.assertEqual(updated_task.description, "testdescription2")
 
     def test_update_task_view_invalid_form(self):
-        test_task = self._create_task()
-        self.client.login(username="testuser", password="testpassword")
-        response = self.client.post(reverse("update_task",
-                                            args=[test_task.pk]), {
+        test_task = self._create_test_task()
+        data = {
             "name": "testtask2",
-            "description": "testdescription2",
-        })
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'tasks/update_task.html')
+            "description": "testdescription2"
+        }
+        self.assertUpdatedViewFormInValid("update_task", [test_task.pk],
+                                          data, 'tasks/update_task.html')
 
 
-class DeleteTaskView(BaseViewTest, CreateTestTask):
+class DeleteTaskView(BaseViewTest):
 
     def test_delete_task_view_renders_correct_template(self):
-        test_task = self._create_task()
+        test_task = self._create_test_task()
         self.assertRendersCorrectTemplate("delete_task",
                                           "tasks/delete_task.html",
                                           url_args={"pk": test_task.pk})
 
     def test_delete_task_renders_correct_template_by_unlogin_user(self):
-        test_task = self._create_task()
+        test_task = self._create_test_task()
         self.assertRendersCorrectTemplate("delete_task",
                                           "tasks/delete_task.html",
                                           url_args={"pk": test_task.pk})
@@ -147,16 +130,16 @@ class DeleteTaskView(BaseViewTest, CreateTestTask):
         self.assertNotEqual(test_task.pk, 'pk')
 
 
-class TaskViewTest(BaseViewTest, CreateTestTask):
+class TaskViewTest(BaseViewTest):
 
     def test_task_view_render_template_test(self):
-        test_task = self._create_task()
+        test_task = self._create_test_task()
         self.assertRendersCorrectTemplate("task_view",
                                           'tasks/task_view.html',
                                           url_args={"pk": test_task.pk})
 
     def test_task_view_render_template_by_unlogin_user(self):
-        test_task = self._create_task()
+        test_task = self._create_test_task()
         self.assertRenderscorrectTemplateUnauthorized(
             "task_view",
             'tasks/task_view.html',
