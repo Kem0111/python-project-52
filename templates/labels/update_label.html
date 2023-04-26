@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load i18n widget_tweaks %}
+{% block content %}
+<main>
+    <div class="container wrapper flex-grow-1">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+                <h2>{% trans "Update label" %}</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for f in form %}
+                    <div class="form-group">
+                        <label for="{{ f.id_for_label }}">{{ f.label }}:</label>
+                        {{ f|add_class:'w-100'|attr:"required:true" }}
+                        <div>{{ f.errors }}</div>
+                        {% endfor %}
+                    <button type="submit" class="btn btn-primary mt-2">{% trans "Update" %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

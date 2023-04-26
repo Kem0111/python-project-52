@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% block content %}
+<main>
+    <div class="container">
+        <h2 class="text-center mt-3"  style="min-height: 10vh;">{% trans "Labels" %}</h2>
+        <p><a href="{% url 'create_label' %}" class="btn btn-success btn-sm">{% trans "Create" %}</a></p>
+        <table class="table table-dark table-striped-columns">
+            <thead>
+                <tr class="font-weight-bold">
+                    <td>{% trans "ID" %}</td>
+                    <td>{% trans "Name" %}</td>
+                    <td>{% trans "Created at" %}</td>
+                    <td ></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for label in object_list %}
+                <tr>
+                    <td class="align-middle py-3">{{ label.pk }}</td>
+                    <td class="align-middle py-3">{{ label.name }}</td>
+                    <td class="align-middle py-3">{{ label.created_at }}</td>
+                    <td class="py-3">
+                        <p><a href="{% url 'update_label' label.pk %}" class="btn btn-success btn-sm">{% trans "Update" %}</a></p>
+                        <p><a href="{% url 'delete_label' label.pk %}" class="btn btn-danger btn-sm">{% trans "Delete"%}</a></p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock %}

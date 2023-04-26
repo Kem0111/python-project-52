@@ -177,3 +177,27 @@ msgstr "Delete task"
 
 msgid "Task view"
 msgstr "Task view"
+
+msgid "Labels"
+msgstr "Labels"
+
+msgid "Create label"
+msgstr "Create label"
+
+msgid "Label successfully created"
+msgstr "Label successfully created"
+
+msgid "Label has been updated successfully"
+msgstr "Label has been updated successfully"
+
+msgid "Update label"
+msgstr "Label has been updated successfully"
+
+msgid "Can't delete label because it's in use"
+msgstr "Can't delete label because it's in use"
+
+msgid "Label has been deleted successfully"
+msgstr "Label has been deleted successfully"
+
+msgid "Delete label"
+msgstr "Delete label"

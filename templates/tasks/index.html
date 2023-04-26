@@ -29,7 +29,7 @@
                     {% else %}
                     {% endif %}
                     </td>
-                    <td class="align-middle py-3">{{ task.date_joined }}</td></td>
+                    <td class="align-middle py-3">{{ task.created_at }}</td>
                     <td class="align-middle py-3">
                         <p><a href="{% url 'update_task' task.pk %}" class="btn btn-success btn-sm">{% trans "Update" %}</a></p>
                         <p><a href="{% url 'delete_task' task.pk %}" class="btn btn-danger btn-sm">{% trans "Delete"%}</a></p>

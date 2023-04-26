@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'users',
     'statuses',
     'tasks',
+    'labels',
     'widget_tweaks'
 ]
 

@@ -17,6 +17,7 @@
                 <li><a href="{% url 'users' %}" class="nav-link px-2 text-light">{% trans "Users" %}</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'statuses' %}" class="nav-link px-2 text-light">{% trans "Statuses" %}</a></li>
+                <li><a href="{% url 'labels' %}" class="nav-link px-2 text-light">{% trans "Labels" %}</a></li>
                 <li><a href="{% url 'tasks' %}" class="nav-link px-2 text-light">{% trans "Tasks" %}</a></li>
             </ul>
             <div class="text-end">

@@ -198,3 +198,27 @@ msgstr "Удаление задачи"
 
 msgid "Task view"
 msgstr "Просмотр задачи"
+
+msgid "Labels"
+msgstr "Метки"
+
+msgid "Create label"
+msgstr "Создать метку"
+
+msgid "Label successfully created"
+msgstr "Метка успешно создана"
+
+msgid "Label has been updated successfully"
+msgstr "Метка успешно изменена"
+
+msgid "Update label"
+msgstr "Изменение метки"
+
+msgid "Can't delete label because it's in use"
+msgstr "Невозможно удалить метку, потому что она используется"
+
+msgid "Label has been deleted successfully"
+msgstr "Метка успешно удалена"
+
+msgid "Delete label"
+msgstr "Удаление метки"

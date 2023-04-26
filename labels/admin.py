@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Statuses
+from .models import Labels
 
-admin.site.register(Statuses)
+admin.site.register(Labels)

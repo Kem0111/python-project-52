@@ -27,18 +27,25 @@ class CreateTaskView(UserActionMixin, BaseLoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form, _('Task successfully created'))
+        task = form.save(commit=False)
+        task.save()
+        form.save_m2m()
+        messages.success(self.request, _('Task successfully created'))
+        return redirect(self.success_url)
 
 
-class UpdateTaskView(UserActionMixin, BaseLoginRequiredMixin, UpdateView):
+class UpdateTaskView(BaseLoginRequiredMixin, UpdateView):
     model = Tasks
     form_class = UpdateTaskForm
     template_name = 'tasks/update_task.html'
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
-        return super().form_valid(form,
-                                  _('Task has been updated successfully'))
+        task = form.save(commit=False)
+        task.save()
+        form.save_m2m()
+        messages.success(self.request, _('Task has been updated successfully'))
+        return redirect(self.success_url)
 
 
 class DeleteTaskView(UserActionMixin, BaseLoginRequiredMixin, DeleteView):

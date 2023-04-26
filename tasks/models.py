@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from statuses.models import Statuses
 from django.contrib.auth.models import User
+from labels.models import Labels
 
 
 class Tasks(models.Model):
@@ -27,7 +28,18 @@ class Tasks(models.Model):
         related_name='executor_tasks',
         verbose_name=_('executor')
     )
+    labels = models.ManyToManyField(
+        Labels,
+        blank=True,
+        null=True,
+        verbose_name=_('Labels')
+    )
     created_at = models.DateTimeField(_('Created at'), auto_now_add=True)
 
     def __str__(self) -> str:
         return self.name
+
+    class Meta:
+        verbose_name = _('Tasks')
+        verbose_name_plural = _('Tasks')
+        ordering = ['-created_at']

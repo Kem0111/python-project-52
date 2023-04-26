@@ -32,6 +32,17 @@
                         <div class="row p-1">
                         <div class="col">{% trans "Created at" %}</div>
                         <div class="col">{{ object.created_at }}</div>
+                        </div>
+                        <div class="row p-1"></div>
+                            <div class="col"></div>
+                                <h6>{% trans 'Labels'%}</h6>
+                                {% for label in object.labels.all %}
+                                    <ul>
+                                        <li>{{ label }}</li>
+                                    </ul>
+                            {% endfor %}
+                        </div>
+                        </div>
                      </div>
                         <div class="row p-1">
                             <div class="col">

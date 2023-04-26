@@ -11,8 +11,10 @@ class StatusesViewTest(BaseViewTest):
                                           "statuses/index.html")
 
     def test_statuses_view_renders_correct_template_by_unlogin_user(self):
-        self.assertRendersCorrectTemplate("statuses",
-                                          "statuses/index.html")
+        self.assertRenderscorrectTemplateUnauthorized(
+            "statuses",
+            "statuses/index.html"
+        )
 
 
 class CreateStatusViewTest(BaseViewTest):
@@ -22,8 +24,10 @@ class CreateStatusViewTest(BaseViewTest):
                                           "statuses/create_status.html")
 
     def test_create_status_renders_correct_template_by_unlogin_user(self):
-        self.assertRendersCorrectTemplate("create_status",
-                                          "statuses/create_status.html")
+        self.assertRenderscorrectTemplateUnauthorized(
+            "create_status",
+            "statuses/create_status.html"
+        )
 
     def test_creation_status_view_form_valid(self):
         self.client.login(username='testuser', password='testpassword')
@@ -54,9 +58,11 @@ class DeleteStatusViewTest(BaseViewTest):
 
     def test_delete_status_renders_correct_template_by_unlogin_user(self):
         test_status = Statuses.objects.create(name="teststatus")
-        self.assertRendersCorrectTemplate("delete_status",
-                                          "statuses/delete_status.html",
-                                          url_args={"pk": test_status.pk})
+        self.assertRenderscorrectTemplateUnauthorized(
+            "delete_status",
+            "statuses/delete_status.html",
+            url_args={"pk": test_status.pk}
+        )
 
     def test_deleted_status_view(self):
         self.client.login(username='testuser', password='testpassword')
@@ -80,9 +86,11 @@ class UpdateStatusViewTest(BaseViewTest):
 
     def test_update_status_renders_correct_template_by_unlogin_user(self):
         test_status = Statuses.objects.create(name="teststatus")
-        self.assertRendersCorrectTemplate("update_status",
-                                          "statuses/update_status.html",
-                                          url_args={"pk": test_status.pk})
+        self.assertRenderscorrectTemplateUnauthorized(
+            "update_status",
+            "statuses/update_status.html",
+            url_args={"pk": test_status.pk}
+        )
 
     def test_updated_status_view_form_valid(self):
         self.client.login(username='testuser', password='testpassword')

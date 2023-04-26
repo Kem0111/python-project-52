@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+{% block content %}
+    <div class="container wrapper flex-grow-1">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 80vh;">
+                <h2>{% trans "Delete label" %}</h2>
+                <p>{% trans "Are you sure you want to delete" %} {{ labels.name }} </p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">{% trans "Yes, delete" %}</button>
+                    <a href="{% url 'labels' %}" class="btn btn-primary">{% trans "No, go back" %}</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
