@@ -2,7 +2,9 @@ from django.forms import (ModelForm,
                           ModelChoiceField,
                           Textarea,
                           ModelMultipleChoiceField,
-                          CheckboxSelectMultiple)
+                          CheckboxSelectMultiple,
+                          Form,
+                          BooleanField)
 from django.contrib.auth.models import User
 from tasks.models import Tasks
 from statuses.models import Statuses
@@ -33,6 +35,29 @@ class CreateTasksForm(ModelForm):
             'name': _('Name'),
             'description': _('description'),
         }
+
+
+class TaskFilterForm(Form):
+    status = ModelChoiceField(
+        queryset=Statuses.objects.all(), 
+        required=False,
+        label=_('status')
+    )
+    executor = ModelChoiceField(
+        queryset=User.objects.all(), 
+        required=False,
+        label=_('executor')
+    )
+    label = ModelChoiceField(
+        queryset=Labels.objects.all(),
+        required=False,
+        label=_('label')
+    )
+    my_tasks_only = BooleanField(
+        required=False,
+        initial=False,
+        label=_('My tasks only')
+    )
 
 
 class UpdateTaskForm(CreateTasksForm):

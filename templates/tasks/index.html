@@ -5,6 +5,19 @@
     <div class="container">
         <h2 class="text-center mt-3"  style="min-height: 10vh;">{% trans "Tasks" %}</h2>
         <p><a href="{% url 'create_task' %}" class="btn btn-success btn-sm">{% trans "Create" %}</a></p>
+        <div class="card mb-3">
+            <div class="card-body bg-dark">
+                <form method="get" class="form-inline">
+                    {% for f in filter_form %}
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="{{ f.id_for_label }}" class="mr-2 font-weight-bold" style="color: white;">{{ f.label }}</label>
+                        {{ f }}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mb-2">{% trans "Filter" %}</button>
+                </form>
+            </div>
+        </div>
         <table class="table table-dark table-striped-columns">
             <thead>
                 <tr class="font-weight-bold">

@@ -6,7 +6,7 @@ from django.views.generic import (ListView,
                                   DetailView)
 from tasks.models import Tasks
 from django.urls import reverse_lazy
-from tasks.forms import CreateTasksForm, UpdateTaskForm
+from tasks.forms import CreateTasksForm, UpdateTaskForm, TaskFilterForm
 from django.utils.translation import gettext as _
 from common.decorators import login_required_message
 from django.utils.decorators import method_decorator
@@ -17,6 +17,28 @@ from django.shortcuts import redirect
 class TasksView(BaseLoginRequiredMixin, ListView):
     model = Tasks
     template_name = 'tasks/index.html'
+
+    def get_queryset(self):
+        queryset = queryset = super().get_queryset()
+        status_filter = self.request.GET.get('status')
+        label_filter = self.request.GET.get('label')
+        executor_filter = self.request.GET.get('executor')
+        my_tasks_only = self.request.GET.get('my_tasks_only')
+
+        if status_filter:
+            queryset = queryset.filter(status=status_filter)
+        if label_filter:
+            queryset = queryset.filter(labels__pk=label_filter)
+        if executor_filter:
+            queryset = queryset.filter(executor=executor_filter)
+        if my_tasks_only:
+            queryset = queryset.filter(author=self.request.user)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_form'] = TaskFilterForm(self.request.GET or None)
+        return context
 
 
 class CreateTaskView(UserActionMixin, BaseLoginRequiredMixin, CreateView):

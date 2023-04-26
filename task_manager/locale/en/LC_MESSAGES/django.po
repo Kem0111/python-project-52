@@ -201,3 +201,9 @@ msgstr "Label has been deleted successfully"
 
 msgid "Delete label"
 msgstr "Delete label"
+
+msgid "My tasks only"
+msgstr "Только свои задачи"
+
+msgid "label"
+msgstr "Метка"
