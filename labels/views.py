@@ -1,12 +1,14 @@
 from .models import Labels
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .forms import CreateLabelForm, UpdateLabelForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from common.mixins import UserActionMixin, BaseLoginRequiredMixin
+from common.mixins import BaseLoginRequiredMixin
 from common.decorators import login_required_message
 from django.utils.decorators import method_decorator
+from common.base_view_classes import (BaseUpdateView,
+                                      BaseDeleteView,
+                                      BaseCreateView)
 from django.contrib import messages
 from django.shortcuts import redirect
 # Create your views here.
@@ -17,30 +19,26 @@ class LabelsView(BaseLoginRequiredMixin, ListView):
     template_name = 'labels/index.html'
 
 
-class CreateStatusView(UserActionMixin, BaseLoginRequiredMixin, CreateView):
+class CreateLabelView(BaseCreateView):
     form_class = CreateLabelForm
     template_name = 'labels/create_label.html'
     success_url = reverse_lazy('labels')
-
-    def form_valid(self, form):
-        return super().form_valid(form, _('Label successfully created'))
+    success_message = 'Label successfully created'
 
 
-class UpdateLabelView(UserActionMixin, BaseLoginRequiredMixin, UpdateView):
+class UpdateLabelView(BaseUpdateView):
     model = Labels
     form_class = UpdateLabelForm
     template_name = 'labels/update_label.html'
     success_url = reverse_lazy('labels')
-
-    def form_valid(self, form):
-        return super().form_valid(form,
-                                  _('Label has been updated successfully'))
+    success_message = 'Label has been updated successfully'
 
 
-class DeleteLabelView(UserActionMixin, BaseLoginRequiredMixin, DeleteView):
+class DeleteLabelView(BaseDeleteView):
     model = Labels
     template_name = 'labels/delete_label.html'
     success_url = reverse_lazy('labels')
+    success_message = 'Label has been deleted successfully'
 
     @method_decorator(login_required_message)
     def dispatch(self, request, *args, **kwargs):
@@ -49,7 +47,3 @@ class DeleteLabelView(UserActionMixin, BaseLoginRequiredMixin, DeleteView):
             messages.error(request, _("Can't delete label because it's in use"))
             return redirect('labels')
         return super().dispatch(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        return super().form_valid(form,
-                                  _('Label has been deleted successfully'))

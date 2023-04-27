@@ -97,18 +97,6 @@ class UpdateViewsTest(BaseCRUDTest):
             'new_password2': 'updatepassword'
         }
     }
-    app_update_view_correct_params = [
-        ("update_task", [ITEM_PK], correct_data["task"], "tasks"),
-        ("update_label", [ITEM_PK], correct_data["label"], "labels"),
-        ("update_status", [ITEM_PK], correct_data["status"], "statuses"),
-        ("update_user", [ITEM_PK], correct_data["user"], "users"),
-        ('change_password', [ITEM_PK], correct_data["password"], 'users')
-    ]
-
-    @parameterized.expand(app_update_view_correct_params)
-    def test_update_view_form_valid(self, view_name, pk, data, revers_view):
-        self.assertUpdatedViewFormValid(view_name, pk, data, revers_view)
-
     incorrect_data = {
         "task": {
             "name": "updatetask",
@@ -128,24 +116,39 @@ class UpdateViewsTest(BaseCRUDTest):
         }
     }
 
+    base_params = [
+        (
+            "update_task", "tasks/update_task.html",
+            correct_data["task"], incorrect_data["task"], "tasks"
+        ),
+        (
+            "update_label", "labels/update_label.html",
+            correct_data["label"], incorrect_data["label"], "labels"
+        ),
+        (
+            "update_status", "statuses/update_status.html",
+            correct_data["status"], incorrect_data["status"], "statuses"
+        ),
+        (
+            "update_user", "users/update.html", 
+            correct_data["user"], incorrect_data["user"], "users"),
+        (
+            'change_password', 'users/change_password.html',
+            correct_data["password"], incorrect_data["password"], 'users'
+        ),
+    ]
+    app_update_view_correct_params = [
+        (view_name, [ITEM_PK], data, revers_view)
+        for view_name, _, data, _, revers_view in base_params
+    ]
+
+    @parameterized.expand(app_update_view_correct_params)
+    def test_update_view_form_valid(self, view_name, pk, data, revers_view):
+        self.assertUpdatedViewFormValid(view_name, pk, data, revers_view)
+
     app_update_view_incorrect_params = [
-        (
-            "update_task", [ITEM_PK], incorrect_data["task"],
-            "tasks/update_task.html"
-        ),
-        (
-            "update_label", [ITEM_PK], incorrect_data["label"],
-            "labels/update_label.html"
-        ),
-        (
-            "update_status", [ITEM_PK], incorrect_data["status"],
-            "statuses/update_status.html"
-        ),
-        ("update_user", [ITEM_PK], incorrect_data["user"], "users/update.html"),
-        (
-            'change_password', [ITEM_PK], incorrect_data["password"],
-            'users/change_password.html'
-        )
+        (view_name, [ITEM_PK], data, template)
+        for view_name, template, _, data, _ in base_params
     ]
 
     @parameterized.expand(app_update_view_incorrect_params)
