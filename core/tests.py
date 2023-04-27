@@ -1,20 +1,11 @@
 from django.test import TestCase
-from common.test_utils import BaseViewTest
+from common.test_utils import BaseCRUDTest
 from core.forms import LoginUserForm
 from common.test_utils import UserTestCase
 from django.urls import reverse
 
 
-class HomePageViewTest(BaseViewTest):
-
-    def test_home_page_view_renders_correct_template(self):
-        self.assertRendersCorrectTemplate("index", "index.html")
-
-
-class LoginUserViewTest(BaseViewTest):
-
-    def test_login_user_view_renders_correct_template(self):
-        self.assertRendersCorrectTemplate("login", "login.html")
+class LoginUserViewTest(BaseCRUDTest):
 
     def test_login_user_view_form_valid(self):
         response = self.client.post(

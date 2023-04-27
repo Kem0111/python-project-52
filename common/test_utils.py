@@ -18,6 +18,9 @@ from statuses.models import Statuses
 from tasks.models import Tasks
 
 
+ITEM_PK = 1
+
+
 class UserTestCase(TestCase):
     """
     Set up a test user with a username and password for use in tests.
@@ -29,22 +32,17 @@ class UserTestCase(TestCase):
         self.user = User.objects.create_user(
             username="testuser", password="testpassword"
         )
-
-    def _create_test_label(self):
-        return Labels.objects.create(name="testlabel")
-
-    def _create_test_task(self):
-        user = User.objects.get(username="testuser")
-        test_status = Statuses.objects.create(name="teststatus")
-        test_task = Tasks.objects.create(name='testtask', status=test_status,
-                                         author=user)
-        return test_task
-
-    def _create_test_status(self):
-        return Statuses.objects.create(name="teststatus")
+        self.status = Statuses.objects.create(pk=ITEM_PK, name="teststatus")
+        self.label = Labels.objects.create(pk=ITEM_PK, name="testlabel")
+        status_for_task = Statuses.objects.create(name="status_for_task")
+        self.tasks = Tasks.objects.create(pk=ITEM_PK,
+                                          name='testtask',
+                                          status=status_for_task,
+                                          author=self.user)
+        self.client.login(username="testuser", password="testpassword")
 
 
-class BaseViewTest(UserTestCase):
+class BaseCRUDTest(UserTestCase):
     """
     A base test case class for view tests that require an authenticated user.
     This class extends the UserTestCase and provides
@@ -66,7 +64,6 @@ class BaseViewTest(UserTestCase):
         """
         if url_args is None:
             url_args = {}
-        self.client.login(username="testuser", password="testpassword")
         response = self.client.get(reverse(url, kwargs=url_args))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name)
@@ -86,6 +83,7 @@ class BaseViewTest(UserTestCase):
         """
         if url_args is None:
             url_args = {}
+        self.client.logout()
         response = self.client.get(reverse(url, kwargs=url_args))
         self.assertTemplateNotUsed(response, template_name)
         self.assertEqual(response.status_code, 302)
@@ -106,12 +104,15 @@ class BaseViewTest(UserTestCase):
             revers_url (str): The expected URL to redirect to
             after successful creation.
         """
-        self.client.login(username='testuser', password='testpassword')
+
         response = self.client.post(reverse(url), data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, reverse(revers_url))
         created_data = model.objects.get(name=data['name'])
         self.assertEqual(created_data.name, data['name'])
+        if len(data) > 1:
+            self.assertEqual(created_data.status.pk, data['status'])
+            self.assertEqual(created_data.description, data['description'])
 
     def assertCreationViewFormInValid(self, url: str, data: Dict[str, Any],
                                       template_name: str) -> None:
@@ -125,7 +126,7 @@ class BaseViewTest(UserTestCase):
             template_name (str): The expected template name to be used
             when rendering the error.
         """
-        self.client.login(username='testuser', password='testpassword')
+
         response = self.client.post(reverse(url), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name)
@@ -144,7 +145,6 @@ class BaseViewTest(UserTestCase):
             reves_url (str): The expected URL to redirect to after
             successful update.
         """
-        self.client.login(username='testuser', password='testpassword')
         response = self.client.post(reverse(url, args=args), data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, reverse(reves_url))
@@ -163,19 +163,33 @@ class BaseViewTest(UserTestCase):
             template_name (str): The expected template name to be used when
             rendering the error.
         """
-        self.client.login(username='testuser', password='testpassword')
         response = self.client.post(reverse(url, args=args), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name)
 
     def assertDeleteView(self, url: str, model: Type[models.Model],
                          revers_url: str,
-                         test_item: Type[models.Model]) -> None:
+                         args: int) -> None:
+        """
+        Assert that a delete view successfully deletes an object.
 
-        self.client.login(username='testuser', password='testpassword')
-        response = self.client.post(reverse(url, args=[test_item.pk]))
+        This method tests that a delete view successfully deletes the object
+        specified by `test_item` and redirects to the given `revers_url`.
+        It also checks if the object has been removed from the database.
+
+        Parameters:
+        url (str): The URL pattern name of the delete view to test.
+        model (Type[models.Model]): The model class of the object to be deleted.
+        revers_url (str): The URL pattern name to which the view should
+        redirect after successful deletion.
+        test_item (Type[models.Model]): The instance of the object to be
+        deleted.
+
+        Returns:
+        None
+        """
+        response = self.client.post(reverse(url, args=[args]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, reverse(revers_url))
         with self.assertRaises(model.DoesNotExist):
-            test_item.refresh_from_db()
-        self.assertNotEqual(test_item.pk, 'pk')
+            model.objects.get(pk=args)
