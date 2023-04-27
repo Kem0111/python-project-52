@@ -1,4 +1,3 @@
-from django.urls import reverse
 from .models import Statuses
 from common.test_utils import BaseViewTest
 # Create your tests here.
@@ -57,15 +56,9 @@ class DeleteStatusViewTest(BaseViewTest):
         )
 
     def test_deleted_status_view(self):
-        self.client.login(username='testuser', password='testpassword')
-        self.status = Statuses.objects.create(name="Created")
-        response = self.client.post(reverse('delete_status',
-                                            args=[self.status.pk]))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse('statuses'))
-        with self.assertRaises(Statuses.DoesNotExist):
-            self.status.refresh_from_db()
-        self.assertNotEqual(self.status.pk, 'pk')
+        test_status = self._create_test_status()
+        self.assertDeleteView('delete_status', Statuses,
+                              'statuses', test_status)
 
 
 class UpdateStatusViewTest(BaseViewTest):
@@ -95,8 +88,6 @@ class UpdateStatusViewTest(BaseViewTest):
 
     def test_updated_status_view_form_invalid(self):
         test_status = Statuses.objects.create(name="Created")
-        data = {
-            'name': ''
-        }
+        data = {'name': ''}
         self.assertUpdatedViewFormInValid('update_status', [test_status.pk],
                                           data, 'statuses/update_status.html')

@@ -1,4 +1,3 @@
-from django.urls import reverse
 from .models import Labels
 from common.test_utils import BaseViewTest
 # Create your tests here.
@@ -42,13 +41,13 @@ class CreateLabelViewTest(BaseViewTest):
 class DeleteLabelViewTest(BaseViewTest):
 
     def test_delete_label_view_renders_correct_template(self):
-        test_label = Labels.objects.create(name="testlabel")
+        test_label = self._create_test_label()
         self.assertRendersCorrectTemplate("delete_label",
                                           "labels/delete_label.html",
                                           url_args={"pk": test_label.pk})
 
     def test_delete_label_renders_correct_template_by_unlogin_user(self):
-        test_label = Labels.objects.create(name="testlabel")
+        test_label = self._create_test_label()
         self.assertRenderscorrectTemplateUnauthorized(
             "delete_label",
             "labels/delete_label.html",
@@ -56,15 +55,8 @@ class DeleteLabelViewTest(BaseViewTest):
         )
 
     def test_deleted_label_view(self):
-        self.client.login(username='testuser', password='testpassword')
-        self.label = Labels.objects.create(name="Created")
-        response = self.client.post(reverse('delete_label',
-                                            args=[self.label.pk]))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse('labels'))
-        with self.assertRaises(Labels.DoesNotExist):
-            self.label.refresh_from_db()
-        self.assertNotEqual(self.label.pk, 'pk')
+        test_label = self._create_test_label()
+        self.assertDeleteView('delete_label', Labels, 'labels', test_label)
 
 
 class UpdatelabelViewTest(BaseViewTest):

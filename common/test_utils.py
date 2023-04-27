@@ -32,7 +32,7 @@ class UserTestCase(TestCase):
 
     def _create_test_label(self):
         return Labels.objects.create(name="testlabel")
-    
+
     def _create_test_task(self):
         user = User.objects.get(username="testuser")
         test_status = Statuses.objects.create(name="teststatus")
@@ -40,12 +40,15 @@ class UserTestCase(TestCase):
                                          author=user)
         return test_task
 
+    def _create_test_status(self):
+        return Statuses.objects.create(name="teststatus")
+
 
 class BaseViewTest(UserTestCase):
     """
     A base test case class for view tests that require an authenticated user.
     This class extends the UserTestCase and provides
-    helper methods for testing views.
+    helper methods for testing CRUD.
     """
 
     def assertRendersCorrectTemplate(
@@ -164,3 +167,15 @@ class BaseViewTest(UserTestCase):
         response = self.client.post(reverse(url, args=args), data)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, template_name)
+
+    def assertDeleteView(self, url: str, model: Type[models.Model],
+                         revers_url: str,
+                         test_item: Type[models.Model]) -> None:
+
+        self.client.login(username='testuser', password='testpassword')
+        response = self.client.post(reverse(url, args=[test_item.pk]))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse(revers_url))
+        with self.assertRaises(model.DoesNotExist):
+            test_item.refresh_from_db()
+        self.assertNotEqual(test_item.pk, 'pk')

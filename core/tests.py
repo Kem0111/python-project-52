@@ -1,33 +1,35 @@
 from django.test import TestCase
+from common.test_utils import BaseViewTest
 from core.forms import LoginUserForm
 from common.test_utils import UserTestCase
+from django.urls import reverse
 
 
-class HomePageViewTest(TestCase):
+class HomePageViewTest(BaseViewTest):
 
     def test_home_page_view_renders_correct_template(self):
-        response = self.client.get("/")
-        self.assertTemplateUsed(response, "index.html")
+        self.assertRendersCorrectTemplate("index", "index.html")
 
 
-class LoginUserViewTest(UserTestCase):
+class LoginUserViewTest(BaseViewTest):
 
     def test_login_user_view_renders_correct_template(self):
-        response = self.client.get("/login/")
-        self.assertTemplateUsed(response, "login.html")
+        self.assertRendersCorrectTemplate("login", "login.html")
 
     def test_login_user_view_form_valid(self):
         response = self.client.post(
             "/login/", {"username": "testuser", "password": "testpassword"}
         )
         self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("index"))
 
 
 class LogoutUserViewTest(TestCase):
 
     def test_logout_user_view_redirects(self):
-        response = self.client.get("/logout/")
+        response = self.client.get(reverse("logout"))
         self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("index"))
 
 
 class LoginUserFormTest(UserTestCase):

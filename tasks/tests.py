@@ -11,6 +11,7 @@ from labels.models import Labels
 
 
 class TaskFilterFormTest(TestCase):
+
     def test_form_fields(self):
         form = TaskFilterForm()
         self.assertIn('status', form.fields)
@@ -64,7 +65,7 @@ class CreateTaskView(BaseViewTest):
 class UpdateTaskView(BaseViewTest):
 
     def test_tasks_view_render_template_test(self):
-        test_task = self._create_task()
+        test_task = self._create_test_task()
         self.assertRendersCorrectTemplate("update_task",
                                           'tasks/update_task.html',
                                           url_args={"pk": test_task.pk})
@@ -119,15 +120,8 @@ class DeleteTaskView(BaseViewTest):
                                           url_args={"pk": test_task.pk})
 
     def test_delete_task_view(self):
-        self.client.login(username='testuser', password='testpassword')
-        test_task = self._create_task()
-        response = self.client.post(reverse('delete_task',
-                                            args=[test_task.pk]))
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, reverse('tasks'))
-        with self.assertRaises(Tasks.DoesNotExist):
-            test_task.refresh_from_db()
-        self.assertNotEqual(test_task.pk, 'pk')
+        test_task = self._create_test_task()
+        self.assertDeleteView('delete_task', Tasks, 'tasks', test_task)
 
 
 class TaskViewTest(BaseViewTest):
