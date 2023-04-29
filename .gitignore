@@ -10,3 +10,5 @@ coverage.xml
 .DS_Store
 htmlcov
 .env
+migration/*
+!migration/__init__.py
