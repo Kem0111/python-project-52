@@ -21,7 +21,8 @@ test:
 	python manage.py test
 
 test-cov:
-	poetry run coverage run manage.py test -v 2 && coverage xml
+	coverage run --source='.' manage.py test
+	coverage xml
 
 dev:
 	poetry run python manage.py runserver 0.0.0.0:8000
