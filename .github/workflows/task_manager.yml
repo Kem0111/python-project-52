@@ -14,6 +14,7 @@ jobs:
         run: python3 -m pip install --upgrade pip
       - run: |
           pip install poetry
+          poetry shell
           make install
       - run: make lint
       - run: make migrations
