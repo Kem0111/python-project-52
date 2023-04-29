@@ -39,12 +39,12 @@ class CreateTasksForm(ModelForm):
 
 class TaskFilterForm(Form):
     status = ModelChoiceField(
-        queryset=Statuses.objects.all(), 
+        queryset=Statuses.objects.all(),
         required=False,
         label=_('status')
     )
     executor = ModelChoiceField(
-        queryset=User.objects.all(), 
+        queryset=User.objects.all(),
         required=False,
         label=_('executor')
     )

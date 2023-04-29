@@ -18,12 +18,10 @@ from statuses.models import Statuses
 from tasks.models import Tasks
 
 
-ITEM_PK = 1
-
-
-class UserTestCase(TestCase):
+class BaseTestCase(TestCase):
     """
-    Set up a test user with a username and password for use in tests.
+    Set up a test user, status, task, label, with
+    a username and password for use in tests.
     This method is automatically called before running each test
     in a test case class.
     """
@@ -32,17 +30,16 @@ class UserTestCase(TestCase):
         self.user = User.objects.create_user(
             username="testuser", password="testpassword"
         )
-        self.status = Statuses.objects.create(pk=ITEM_PK, name="teststatus")
-        self.label = Labels.objects.create(pk=ITEM_PK, name="testlabel")
+        self.status = Statuses.objects.create(name="teststatus")
+        self.label = Labels.objects.create(name="testlabel")
         status_for_task = Statuses.objects.create(name="status_for_task")
-        self.tasks = Tasks.objects.create(pk=ITEM_PK,
-                                          name='testtask',
-                                          status=status_for_task,
-                                          author=self.user)
+        self.task = Tasks.objects.create(name='testtask',
+                                         status=status_for_task,
+                                         author=self.user)
         self.client.login(username="testuser", password="testpassword")
 
 
-class BaseCRUDTest(UserTestCase):
+class BaseCRUDTest(BaseTestCase):
     """
     A base test case class for view tests that require an authenticated user.
     This class extends the UserTestCase and provides

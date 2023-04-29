@@ -1,0 +1,28 @@
+name:  Python Django CI/CD
+
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: python3 -m pip install --upgrade pip
+      - run: |
+          pip install poetry
+          make install
+      - run: make lint
+      - name:  Run tests and generate coverage report 
+        uses: paambaati/codeclimate-action@v3.2.0
+        if: github.ref_name == 'main'
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        with:
+          coverageCommand: make test-cov
+          debug: true

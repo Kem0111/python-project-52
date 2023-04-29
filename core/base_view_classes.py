@@ -1,4 +1,4 @@
-from common.mixins import UserActionMixin, BaseLoginRequiredMixin
+from core.mixins import UserActionMixin, BaseLoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext as _
 

@@ -4,29 +4,28 @@ install:
 update:
 	poetry update
 
+shell:
+	poetry shell
+
+migrations:
+	python manage.py makemigrations
+	python manage.py migrate
+
 publish:
 	poetry publish --dry-run
 
 lint:
-	poetry run flake8 page_analyzer
+	poetry run flake8
 
 test:
-	poetry run pytest
-
-reporter:
-	coverage report -m
-
-makemessages-ru:
-	django-admin makemessages -l ru
-
-makemessages-en:
-	django-admin makemessages -l en
-
-compilemessages:
-	django-admin compilemessages
+	python manage.py test
 
 test-cov:
-	poetry run pytest --cov-report xml --cov=page_analyzer tests/  
+	poetry run coverage run manage.py test -v 2 && coverage xml
 
-web: 
-	gunicorn task_manager.wsgi
+dev:
+	poetry run python manage.py runserver 0.0.0.0:8000
+
+PORT ?= 8000
+start: 
+	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi:application 

@@ -3,12 +3,12 @@ from django.views.generic.list import ListView
 from .forms import CreateLabelForm, UpdateLabelForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from common.mixins import BaseLoginRequiredMixin
-from common.decorators import login_required_message
+from core.mixins import BaseLoginRequiredMixin
+from core.decorators import login_required_message
 from django.utils.decorators import method_decorator
-from common.base_view_classes import (BaseUpdateView,
-                                      BaseDeleteView,
-                                      BaseCreateView)
+from core.base_view_classes import (BaseUpdateView,
+                                    BaseDeleteView,
+                                    BaseCreateView)
 from django.contrib import messages
 from django.shortcuts import redirect
 # Create your views here.

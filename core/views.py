@@ -29,3 +29,7 @@ class LogoutUserView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         messages.info(request, _('You have successfully logged out'))
         return super().dispatch(request, *args, **kwargs)
+
+
+def handling_404(request, exeption):
+    return render(request, '404.html', status=404)

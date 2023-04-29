@@ -1,7 +1,7 @@
 from django.test import TestCase
-from common.test_utils import BaseCRUDTest
+from tests.test_utils import BaseCRUDTest
 from core.forms import LoginUserForm
-from common.test_utils import UserTestCase
+from tests.test_utils import BaseTestCase
 from django.urls import reverse
 
 
@@ -23,7 +23,7 @@ class LogoutUserViewTest(TestCase):
         self.assertEqual(response.url, reverse("index"))
 
 
-class LoginUserFormTest(UserTestCase):
+class LoginUserFormTest(BaseTestCase):
 
     def test_login_user_form_valid_data(self):
         form = LoginUserForm(

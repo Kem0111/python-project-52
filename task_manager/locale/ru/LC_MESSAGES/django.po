@@ -228,3 +228,9 @@ msgstr "Только свои задачи"
 
 msgid "label"
 msgstr "Метка"
+
+msgid "Go back to the main page"
+msgstr "Вернуться на главную"
+
+msgid "Oops! The page you are looking for was not found"
+msgstr "Oops! Страница, которую вы ищете, не найдена"

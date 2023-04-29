@@ -1,4 +1,4 @@
-from common.mixins import UserActionMixin, BaseLoginRequiredMixin
+from core.mixins import UserActionMixin, BaseLoginRequiredMixin
 from django.views.generic import (ListView,
                                   CreateView,
                                   UpdateView,
@@ -8,7 +8,7 @@ from tasks.models import Tasks
 from django.urls import reverse_lazy
 from tasks.forms import CreateTasksForm, UpdateTaskForm, TaskFilterForm
 from django.utils.translation import gettext as _
-from common.decorators import login_required_message
+from core.decorators import login_required_message
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.shortcuts import redirect

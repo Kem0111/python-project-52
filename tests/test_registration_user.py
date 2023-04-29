@@ -4,8 +4,7 @@ from users.views import RegistrationUserView
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.contrib.auth.models import User
-from common.test_utils import BaseCRUDTest
+from tests.test_utils import BaseCRUDTest
 
 
 class RegistrationUserViewTest(BaseCRUDTest):
@@ -42,9 +41,3 @@ class RegistrationUserViewTest(BaseCRUDTest):
         request.user = AnonymousUser()
         response = RegistrationUserView.as_view()(request)
         self.assertEqual(response.status_code, 200)
-
-
-class DeleteUserViewTest(BaseCRUDTest):
-
-    def delete_user_view_test(self):
-        self.assertDeleteView('delete_user', User, 'index', [self.user.pk])

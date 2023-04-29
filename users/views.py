@@ -7,9 +7,9 @@ from .forms import (RegistrationUserForm,
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from django.contrib.auth.views import PasswordChangeView
-from common.mixins import UserActionMixin, UserPermissionMixin
-from common.base_view_classes import (BaseUpdateView,
-                                      BaseDeleteView)
+from core.mixins import UserActionMixin, UserPermissionMixin
+from core.base_view_classes import (BaseUpdateView,
+                                    BaseDeleteView)
 # Create your views here.
 
 
