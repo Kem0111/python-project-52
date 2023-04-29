@@ -14,10 +14,8 @@ jobs:
         run: python3 -m pip install --upgrade pip
       - run: |
           pip install poetry
-          poetry shell
           make install
       - run: make lint
-      - run: make migrations
       - name:  Run tests and generate coverage report 
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
