@@ -20,9 +20,15 @@ jobs:
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
         env:
+          DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST}}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+          DEBUG: ${{ secrets.DEBUG }}
         with:
           coverageCommand: make test-cov
           debug: true
