@@ -29,6 +29,7 @@ jobs:
           POSTGRES_HOST: ${{ secrets.POSTGRES_HOST}}
           POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
           DEBUG: ${{ secrets.DEBUG }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         with:
           coverageCommand: make test-cov
           debug: true
