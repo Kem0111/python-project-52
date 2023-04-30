@@ -23,4 +23,3 @@ urlpatterns = [
 ]
 
 handler404 = 'core.views.handling_404'
-handler500 = 'core.views.custom_server_error_view'

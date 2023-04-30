@@ -8,7 +8,7 @@ COPY . .
 
 RUN poetry config virtualenvs.create false
 RUN make install
-RUN make migrations
+
 
 EXPOSE 8000
 

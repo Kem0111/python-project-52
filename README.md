@@ -74,6 +74,7 @@ To set up the project, follow these steps:
 
 3. Run the following command in your terminal or command prompt to start the project:
     ```
-    docker-compose up -d
+    docker-compose up -d  
+    docker-compose exec app make migrations
     ```
 
