@@ -21,7 +21,7 @@
                     {% endif %}
                     {% for field in form %}
                     <div class="form-group">
-                        <label for="{{ f.id_for_label }}">{% trans field.label %}</label>
+                        <label>{% trans field.label %}</label>
                         {{ field }}
                         {% endfor %}
                     </div>
