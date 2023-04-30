@@ -21,8 +21,8 @@
                     {% endif %}
                     {% for field in form %}
                     <div class="form-group">
-                        <span>{% trans field.label %}</span>
-                        <p>{{ field }}</p>
+                        <label>{% trans field.label %}</label>
+                        {{ field }}
                         {% endfor %}
                     </div>
                     <button type="submit" class="btn btn-primary">{% trans "Login" %}</button>
