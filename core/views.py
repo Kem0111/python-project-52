@@ -5,6 +5,7 @@ from .forms import LoginUserForm
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.utils.translation import gettext as _
+from django.http import HttpResponseServerError
 
 
 class HomePageView(TemplateView):
@@ -32,4 +33,10 @@ class LogoutUserView(LogoutView):
 
 
 def handling_404(request, exeption):
+    print("Обработчик 404 вызван")
     return render(request, '404.html', status=404)
+
+
+def custom_server_error_view(request):
+    print("Обработчик 500 вызван")
+    return HttpResponseServerError('Ошибка сервера')

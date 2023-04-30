@@ -26,9 +26,9 @@ load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG') == 'True'
 
-ALLOWED_HOSTS = ['webserver', '127.0.0.1', '0.0.0.0', 'localhost', 'dpg-cgla574eoogkndn85r0g-a', 'task-manager-xnnw.onrender.com']
+ALLOWED_HOSTS = ['webserver', '127.0.0.1', '0.0.0.0', 'localhost', 'task-manager-xnnw.onrender.com']
 
 
 # Application definition
@@ -41,12 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'task_manager',
+    'core',
     'bootstrap4',
     'users',
     'statuses',
     'tasks',
     'labels',
-    'widget_tweaks'
+    'widget_tweaks',
+    'rollbar.contrib.django'
 ]
 
 MIDDLEWARE = [
@@ -164,3 +166,31 @@ MESSAGE_TAGS = {
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+ROLLBAR = {
+    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
+    'environment': 'development' if DEBUG else 'production',
+    'root': BASE_DIR,
+}
+
+if ROLLBAR['access_token']:
+    import rollbar
+    rollbar.init(**ROLLBAR)
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'rollbar': {
+                'class': 'rollbar.logger.RollbarHandler',
+                'access_token': ROLLBAR['access_token'],
+                'environment': ROLLBAR['environment'],
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['rollbar'],
+                'level': 'ERROR',
+            },
+        },
+    }
