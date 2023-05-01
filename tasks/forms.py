@@ -12,12 +12,19 @@ from django.utils.translation import gettext_lazy as _
 from labels.models import Labels
 
 
+class FullNameUserChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f'{obj.first_name} {obj.last_name}'
+
+
 class CreateTasksForm(ModelForm):
 
     status = ModelChoiceField(queryset=Statuses.objects.all(),
                               required=True, label=_('status'))
-    executor = ModelChoiceField(queryset=User.objects.all(),
-                                required=False, label=_('executor'))
+    executor = FullNameUserChoiceField(
+        queryset=User.objects.all(),
+        required=False,
+        label=_('executor'),)
     labels = ModelMultipleChoiceField(
         queryset=Labels.objects.all(),
         widget=CheckboxSelectMultiple,

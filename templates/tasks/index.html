@@ -35,10 +35,10 @@
                     <td class="align-middle py-3">{{ task.pk }}</td>
                     <td class="align-middle py-3"><a href="{% url 'task_view' task.pk %}">{{ task.name }}</a></td>
                     <td class="align-middle py-3">{{ task.status }}</td>
-                    <td class="align-middle py-3">{{ task.author }}</td>
+                    <td class="align-middle py-3">{{ task.author.get_full_name }}</td>
                     <td class="align-middle py-3">
                     {% if task.executor %}
-                        {{ task.executor }}
+                        {{ task.executor.get_full_name }}
                     {% else %}
                     {% endif %}
                     </td>
