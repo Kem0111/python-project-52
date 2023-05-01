@@ -37,7 +37,7 @@ msgid "Login"
 msgstr "Вход"
 
 msgid "Registration"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 msgid "Your path to organized productivity"
 msgstr "Ваш путь к организованной продуктивности"

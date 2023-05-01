@@ -11,8 +11,9 @@
                 {% csrf_token %}
                 {% for f in form %}
                     <div class="form-group">
-                        <label for="{{ f.id_for_label }}">{{ f.label }}:</label>
-                        {{ f|add_class:'w-100'|attr:"required:true" }}
+                        <label for="{{ f.id_for_label }}">{% trans f.label %}</label>
+                        {{ f|add_class:'w-100'|attr:"required:True" }}
+
                         <div>{{ f.errors }}</div>
                     </div>
                 {% endfor %}
