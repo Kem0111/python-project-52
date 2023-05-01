@@ -19,11 +19,11 @@
                     <div class="container">
                         <div class="row p-1">
                         <div class="col">{% trans "author" %}</div>
-                        <div class="col">{{ object.author }}</div>
+                        <div class="col">{{ object.author.get_full_name }}</div>
                         </div>
                         <div class="row p-1">
                         <div class="col">{% trans "executor" %}</div>
-                        <div class="col">{{ object.executor }}</div>
+                        <div class="col">{{ object.executor.get_full_name }}</div>
                         </div>
                         <div class="row p-1">
                         <div class="col">{% trans "status" %}</div>

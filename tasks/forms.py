@@ -2,7 +2,6 @@ from django.forms import (ModelForm,
                           ModelChoiceField,
                           Textarea,
                           ModelMultipleChoiceField,
-                          CheckboxSelectMultiple,
                           Form,
                           BooleanField)
 from django.contrib.auth.models import User
