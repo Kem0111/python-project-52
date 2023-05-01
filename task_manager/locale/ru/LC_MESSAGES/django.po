@@ -119,7 +119,7 @@ msgid "No, go back"
 msgstr "Нет, вернуться назад"
 
 msgid "User has been deleted successfully"
-msgstr "Пользователь успешно удален"
+msgstr "Пользователь успешно удалён"
 
 msgid "Status changed successfully"
 msgstr "Статус успешно изменён"
@@ -129,9 +129,6 @@ msgstr "Невозможно удалить статус, потому что о
 
 msgid "Status created successfully"
 msgstr "Статус успешно создан"
-
-msgid "Status deleted successfully"
-msgstr "Статус успешно удалён"
 
 msgid "Statuses"
 msgstr "Статусы"
@@ -149,7 +146,7 @@ msgid "Create status"
 msgstr "Создать статус"
 
 msgid "Status has been deleted successfully"
-msgstr "Статус успешно удален"
+msgstr "Статус успешно удалён"
 
 msgid "Delete status"
 msgstr "Удаление статуса"
