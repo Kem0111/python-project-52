@@ -15,7 +15,7 @@
                         {{ f|add_class:'w-100'|attr:"required:true" }}
                         <div>{{ f.errors }}</div>
                         {% endfor %}
-                    <button type="submit" class="btn btn-primary mt-2">{% trans "Create" %}</button>
+                    <input class="btn btn-primary mt-2" type="submit" value="{% trans 'Create' %}">
                 </form>
             </div>
         </div>

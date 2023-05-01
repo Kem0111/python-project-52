@@ -48,7 +48,9 @@ To set up the project, follow these steps:
 
 1. Clone the repository
 
-``` git clone https://github.com/Kem0111/python-project-52.git ```
+    ``` 
+    git clone https://github.com/Kem0111/python-project-52.git 
+    ```
 
 2. To set up the environment for the project, you need to define environment variables in a .env file:
 
@@ -59,11 +61,7 @@ To set up the project, follow these steps:
 
     If you are using the production environment, you need to configure the database settings:  
     ```
-    POSTGRES_PASSWORD=
-    POSTGRES_USER=
-    POSTGRES_DB=
-    POSTGRES_HOST=
-    POSTGRES_PORT=
+    POSTGRES_URL=
     ```
 
     Additionally, set the Rollbar access token:
