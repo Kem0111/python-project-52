@@ -244,3 +244,5 @@ msgstr "Введенные пароли не совпадают"
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
+msgid "Show"
+msgstr "Показать"

@@ -219,3 +219,6 @@ msgstr "Sign in"
 
 msgid "Sign up"
 msgstr "Sign up"
+
+msgid "Show"
+msgstr "Show"
