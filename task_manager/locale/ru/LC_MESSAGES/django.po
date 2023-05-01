@@ -234,3 +234,6 @@ msgstr "Вернуться на главную"
 
 msgid "Oops! The page you are looking for was not found"
 msgstr "Oops! Страница, которую вы ищете, не найдена"
+
+msgid "Sing in"
+msgstr "Войти"

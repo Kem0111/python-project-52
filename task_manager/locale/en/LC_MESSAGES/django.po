@@ -213,3 +213,6 @@ msgstr "Go back to the main page"
 
 msgid "Oops! The page you are looking for was not found"
 msgstr "Oops! The page you are looking for was not found"
+
+msgid "Sing in"
+msgstr "Sing in"
