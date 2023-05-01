@@ -37,7 +37,7 @@ msgid "Login"
 msgstr "Вход"
 
 msgid "Registration"
-msgstr "Зарегистрировать"
+msgstr "Регистрация"
 
 msgid "Your path to organized productivity"
 msgstr "Ваш путь к организованной продуктивности"
@@ -235,5 +235,8 @@ msgstr "Вернуться на главную"
 msgid "Oops! The page you are looking for was not found"
 msgstr "Oops! Страница, которую вы ищете, не найдена"
 
-msgid "Sing in"
+msgid "Sign in"
 msgstr "Войти"
+
+msgid "Sign up"
+msgstr "Зарегистрировать"
