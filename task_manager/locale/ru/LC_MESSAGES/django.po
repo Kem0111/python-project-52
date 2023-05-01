@@ -101,7 +101,7 @@ msgid "Password successfully updated"
 msgstr "Пароль успешно изменен"
 
 msgid "User information updated successfully"
-msgstr "Информация о пользователе успешно обновлена"
+msgstr "Пользователь успешно изменён"
 
 msgid "Logout"
 msgstr "Выход"

@@ -5,7 +5,6 @@ from .forms import (RegistrationUserForm,
                     UpdateUserForm,)
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
-from django.contrib.auth.views import PasswordChangeView
 from core.mixins import UserActionMixin, UserPermissionMixin
 from core.base_view_classes import (BaseUpdateView,
                                     BaseDeleteView)
