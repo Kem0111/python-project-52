@@ -48,7 +48,7 @@ class TaskFilterForm(Form):
         required=False,
         label=_('status')
     )
-    executor = ModelChoiceField(
+    executor = FullNameUserChoiceField(
         queryset=User.objects.all(),
         required=False,
         label=_('executor')
