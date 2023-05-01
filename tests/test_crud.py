@@ -163,7 +163,7 @@ class DeleteViewsTest(BaseCRUDTest):
             ('delete_task', Tasks, 'tasks', self.task.pk),
             ('delete_label', Labels, 'labels', self.label.pk),
             ('delete_status', Statuses, 'statuses', self.status.pk),
-            ('delete_user', User, 'index', self.user.pk)
+            ('delete_user', User, 'users', self.user.pk)
         ]
 
     def test_delete_view_form_valid(self):

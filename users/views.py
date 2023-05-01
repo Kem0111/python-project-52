@@ -36,7 +36,7 @@ class UpdateUserView(BaseUpdateView, UserPermissionMixin):
 class DeleteUserView(BaseDeleteView, UserPermissionMixin):
     model = User
     template_name = 'users/delete_user.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('users')
     success_message = 'User has been deleted successfully'
 
     def get_queryset(self):
