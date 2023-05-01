@@ -27,7 +27,6 @@ class CreateTasksForm(ModelForm):
         label=_('executor'),)
     labels = ModelMultipleChoiceField(
         queryset=Labels.objects.all(),
-        widget=CheckboxSelectMultiple,
         required=False,
         label=_('Labels')
     )
