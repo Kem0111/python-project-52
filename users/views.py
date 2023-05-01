@@ -2,8 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from .forms import (RegistrationUserForm,
-                    UpdateUserForm,
-                    CustomPasswordChangeForm)
+                    UpdateUserForm,)
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from django.contrib.auth.views import PasswordChangeView
@@ -33,16 +32,6 @@ class UpdateUserView(BaseUpdateView, UserPermissionMixin):
     template_name = 'users/update.html'
     success_url = reverse_lazy('users')
     success_message = 'User information updated successfully'
-
-
-class UserPasswordChangeView(UserActionMixin, UserPermissionMixin,
-                             PasswordChangeView):
-    form_class = CustomPasswordChangeForm
-    template_name = 'users/change_password.html'
-    success_url = reverse_lazy('users')
-
-    def form_valid(self, form):
-        return super().form_valid(form, _('Password successfully updated'))
 
 
 class DeleteUserView(BaseDeleteView, UserPermissionMixin):

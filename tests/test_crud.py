@@ -30,10 +30,6 @@ class ReadViewsTest(BaseCRUDTest):
             (
                 "delete_status", "statuses/delete_status.html",
                 {"pk": self.status.pk}
-            ),
-            (
-                'change_password', 'users/change_password.html',
-                {"pk": self.user.pk}
             )
         ]
         self.all_app_template_view_params = (
@@ -97,15 +93,12 @@ class UpdateViewsTest(BaseCRUDTest):
             "user": {
                 "first_name": "Updated",
                 "last_name": "User",
-                "username": "testuser"
+                "username": "testuser",
+                "password1": "dcjnfvhb",
+                "password2": "dcjnfvhb"
             },
             "label": {"name": "updated_label"},
             "status": {"name": "updated_status"},
-            "password": {
-                'old_password': 'testpassword',
-                'new_password1': 'updatepassword',
-                'new_password2': 'updatepassword'
-            }
         }
         self.incorrect_data = {
             "task": {
@@ -115,15 +108,12 @@ class UpdateViewsTest(BaseCRUDTest):
             "user": {
                 "first_name": "Updated",
                 "last_name": "User",
-                "username": ""
+                "username": "",
+                "password1": "dcjnfvhb",
+                "password2": "dcjnfvhb"
             },
             "label": {"name": ""},
             "status": {"name": ""},
-            "password": {
-                'old_password': 'testpassword',
-                'new_password1': 'update',
-                'new_password2': 'updatepassword'
-            }
         }
         self.base_params = [
             (
@@ -145,11 +135,6 @@ class UpdateViewsTest(BaseCRUDTest):
                 "update_user", self.user.pk,
                 "users/update.html", self.correct_data["user"],
                 self.incorrect_data["user"], "users"),
-            (
-                'change_password', self.user.pk,
-                'users/change_password.html', self.correct_data["password"],
-                self.incorrect_data["password"], 'users'
-            ),
         ]
 
         self.app_update_view_correct_params = [
