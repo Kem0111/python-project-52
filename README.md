@@ -2,6 +2,7 @@
 [![Actions Status](https://github.com/Kem0111/python-project-52/workflows/hexlet-check/badge.svg)](https://github.com/Kem0111/python-project-52/actions) <a href="https://codeclimate.com/github/Kem0111/python-project-52/maintainability"><img src="https://api.codeclimate.com/v1/badges/99ac7c5906b10c988c28/maintainability" /></a> [![Python Django CI/CD](https://github.com/Kem0111/python-project-52/actions/workflows/task_manager.yml/badge.svg)](https://github.com/Kem0111/python-project-52/actions/workflows/task_manager.yml) <a href="https://codeclimate.com/github/Kem0111/python-project-52/test_coverage"><img src="https://api.codeclimate.com/v1/badges/99ac7c5906b10c988c28/test_coverage" /></a>
 
 # Task Manager
+Site :https://task-manager-xnnw.onrender.com  
 
 This is a task manager that allows users to create, assign, and track tasks. The main entities involved in this project are Status, Labels, Tasks, and Users.
 
