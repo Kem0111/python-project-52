@@ -76,10 +76,10 @@ msgid "Password"
 msgstr "Пароль"
 
 msgid "You are successfully logged in"
-msgstr "Вы успешно залогинены"
+msgstr "Вы залогинены"
 
 msgid "You have successfully logged out"
-msgstr "Вы успешно вышли из системы"
+msgstr "Вы разлогинены"
 
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
