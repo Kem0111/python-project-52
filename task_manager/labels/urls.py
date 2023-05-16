@@ -1,8 +1,8 @@
-from django.urls import path
 from task_manager.labels.views import (LabelsView,
                                        CreateLabelView,
                                        UpdateLabelView,
                                        DeleteLabelView)
+from django.urls import path
 
 urlpatterns = [
     path('', LabelsView.as_view(), name='labels'),
