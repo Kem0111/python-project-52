@@ -1,10 +1,10 @@
 from django.test import TestCase
 from django.urls import reverse
-from tasks.models import Tasks
-from tasks.forms import TaskFilterForm
-from statuses.models import Statuses
+from task_manager.tasks.models import Tasks
+from task_manager.tasks.forms import TaskFilterForm
+from task_manager.statuses.models import Statuses
 from django.contrib.auth.models import User
-from labels.models import Labels
+from task_manager.labels.models import Labels
 # Create your tests here.
 
 

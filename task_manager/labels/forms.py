@@ -1,4 +1,4 @@
-from .models import Labels
+from task_manager.labels.models import Labels
 from django.forms import ModelForm
 
 

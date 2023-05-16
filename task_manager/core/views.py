@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView
-from .forms import LoginUserForm
+from task_manager.core.forms import LoginUserForm
 from django.contrib import messages
 from django.contrib.auth.views import LogoutView
 from django.utils.translation import gettext as _

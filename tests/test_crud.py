@@ -1,7 +1,7 @@
 from tests.test_utils import BaseCRUDTest
-from labels.models import Labels
-from statuses.models import Statuses
-from tasks.models import Tasks
+from task_manager.labels.models import Labels
+from task_manager.statuses.models import Statuses
+from task_manager.tasks.models import Tasks
 from django.contrib.auth.models import User
 
 

@@ -1,17 +1,17 @@
-from .models import Statuses
+from task_manager.statuses.models import Statuses
 from django.views.generic.list import ListView
-from .forms import CreateStatusForm, UpdateStatusForm
+from task_manager.statuses.forms import CreateStatusForm, UpdateStatusForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from core.mixins import BaseLoginRequiredMixin
-from core.decorators import login_required_message
+from task_manager.core.mixins import BaseLoginRequiredMixin
+from task_manager.core.decorators import login_required_message
 from django.utils.decorators import method_decorator
 from django.contrib import messages
 from django.shortcuts import redirect
-from tasks.models import Tasks
-from core.base_view_classes import (BaseUpdateView,
-                                    BaseDeleteView,
-                                    BaseCreateView)
+from task_manager.tasks.models import Tasks
+from task_manager.core.base_view_classes import (BaseUpdateView,
+                                                 BaseDeleteView,
+                                                 BaseCreateView)
 # Create your views here.
 
 

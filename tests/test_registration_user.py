@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.test import RequestFactory
-from users.views import RegistrationUserView
+from task_manager.users.views import RegistrationUserView
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware

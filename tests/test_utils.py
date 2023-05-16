@@ -13,9 +13,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from typing import Dict, Optional, Type, Any, List
 from django.db import models
-from labels.models import Labels
-from statuses.models import Statuses
-from tasks.models import Tasks
+from task_manager.labels.models import Labels
+from task_manager.statuses.models import Statuses
+from task_manager.tasks.models import Tasks
 
 
 class BaseTestCase(TestCase):

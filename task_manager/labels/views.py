@@ -1,14 +1,14 @@
-from .models import Labels
+from task_manager.labels.models import Labels
 from django.views.generic.list import ListView
-from .forms import CreateLabelForm, UpdateLabelForm
+from task_manager.labels.forms import CreateLabelForm, UpdateLabelForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from core.mixins import BaseLoginRequiredMixin
-from core.decorators import login_required_message
+from task_manager.core.mixins import BaseLoginRequiredMixin
+from task_manager.core.decorators import login_required_message
 from django.utils.decorators import method_decorator
-from core.base_view_classes import (BaseUpdateView,
-                                    BaseDeleteView,
-                                    BaseCreateView)
+from task_manager.core.base_view_classes import (BaseUpdateView,
+                                                 BaseDeleteView,
+                                                 BaseCreateView)
 from django.contrib import messages
 from django.shortcuts import redirect
 # Create your views here.

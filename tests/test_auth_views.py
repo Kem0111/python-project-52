@@ -1,6 +1,6 @@
 from django.test import TestCase
 from tests.test_utils import BaseCRUDTest
-from core.forms import LoginUserForm
+from task_manager.core.forms import LoginUserForm
 from tests.test_utils import BaseTestCase
 from django.urls import reverse
 

@@ -4,5 +4,5 @@ from django.utils.translation import gettext_lazy as _
 
 class StatusesConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'statuses'
+    name = 'task_manager.statuses'
     verbose_name = _('Statuses')

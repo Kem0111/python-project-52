@@ -222,3 +222,6 @@ msgstr "Sign up"
 
 msgid "Show"
 msgstr "Show"
+
+msgid "Can't delete user because it's in use"
+msgstr "Can't delete user because it's in use"

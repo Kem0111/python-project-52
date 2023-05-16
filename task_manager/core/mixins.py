@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 from typing import Any
 from django.http import HttpRequest
-from core.decorators import login_required_message
+from task_manager.core.decorators import login_required_message
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 

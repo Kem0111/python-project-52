@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('core.urls')),
+    path('', include('task_manager.core.urls')),
     path('admin/', admin.site.urls)
 ]
 
-handler404 = 'core.views.handling_404'
+handler404 = 'task_manager.core.views.handling_404'

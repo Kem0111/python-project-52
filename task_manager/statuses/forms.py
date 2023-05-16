@@ -1,4 +1,4 @@
-from .models import Statuses
+from task_manager.statuses.models import Statuses
 from django.forms import ModelForm
 
 

@@ -246,3 +246,6 @@ msgstr "Подтверждение пароля"
 
 msgid "Show"
 msgstr "Показать"
+
+msgid "Can't delete user because it's in use"
+msgstr "Невозможно удалить пользователя, потому что он используется"
